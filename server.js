@@ -22,12 +22,15 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
             newTextFile(array);
             return false;
         }
-        // check for dicrtionary.
-        if(dic[array[i].toUpperCase()] == undefined){
-            console.error("Error: can not find the word- " + array[i] + " at dictionary");
-            // console.error("at " + i + " line");
-            return false
-        }
+        /*  check for dictionary.
+         *   this code is work, 
+         *  but I don't get the Oxford dictionary, so comment out now.
+         */   
+        // if(dic[array[i].toUpperCase()] == undefined){
+        //     console.error("Error: can not find the word- " + array[i] + " at dictionary");
+        //     // console.error("at " + i + " line");
+        //     return false
+        // }
 
         if ( array[i] !== prev ) {
             newText += freq + " - " + array[i] + "\n";
