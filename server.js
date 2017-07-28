@@ -8,8 +8,8 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
     var array = data.toString().split("\n");
     array.sort();
     var newText = "",
-        prev, 
-        freq = 1;
+        next, 
+        freq = 0;
     for(i in array) {
         if(array[i] == ""){
             continue;
@@ -31,14 +31,15 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
         //     // console.error("at " + i + " line");
         //     return false
         // }
+        // newText += freq+"\n";
+        next = array[i*1+1];
+        ++freq;
+        if ( array[i] !== next ) {
 
-        if ( array[i] !== prev ) {
             newText += freq + " - " + array[i] + "\n";
-            freq = 1;
-        } else {
-            freq++;
+            freq = 0;
         }
-        prev = array[i];
+        
 
         // console.log(i + "-"+array[i]);
     }
