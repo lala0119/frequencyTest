@@ -43,6 +43,8 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
 
         // console.log(i + "-"+array[i]);
     }
+    console.log(": " + newText.length + " characters, " +
+        Buffer.byteLength(newText, 'utf8') + " bytes");
     writeTextFile(newText, "finText");
     
 });
