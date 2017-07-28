@@ -1,16 +1,17 @@
+
 // ref - https://stackoverflow.com/questions/6831918/node-js-read-a-text-file-into-an-array-each-line-an-item-in-the-array
 var fs = require('fs');
 var dic = require('./dictionary/dictionary.json');
 
 fs.readFile('update/text.txt', 'utf8', function(err, data) {
     if(err) throw err;
-    console.log(dic.AND);
     var array = data.toString().split("\n");
     array.sort();
     var newText = "",
         next, 
-        freq = 0;
-    for(i in array) {
+        freq = 0,
+        i, len;
+    for(i = 0, len=array.length; i < len; i++){
         if(array[i] == ""){
             continue;
         }
@@ -43,7 +44,7 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
 
         // console.log(i + "-"+array[i]);
     }
-    console.log(": " + newText.length + " characters, " +
+    console.log("size: " + newText.length + " characters, " +
         Buffer.byteLength(newText, 'utf8') + " bytes");
     writeTextFile(newText, "finText");
     
