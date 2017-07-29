@@ -8,7 +8,7 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
     var array = data.toString().split("\n");
     array.sort();
     var newText = "",
-        next, 
+        next,
         freq = 0,
         i, len;
     for(i = 0, len=array.length; i < len; i++){
@@ -24,9 +24,9 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
             return false;
         }
         /*  check for dictionary.
-         *   this code is work, 
+         *   this code is work,
          *  but I don't get the Oxford dictionary, so comment out now.
-         */   
+         */
         // if(dic[array[i].toUpperCase()] == undefined){
         //     console.error("Error: can not find the word- " + array[i] + " at dictionary");
         //     // console.error("at " + i + " line");
@@ -40,18 +40,20 @@ fs.readFile('update/text.txt', 'utf8', function(err, data) {
             newText += freq + " - " + array[i] + "\n";
             freq = 0;
         }
-        
+
 
         // console.log(i + "-"+array[i]);
     }
     console.log("size: " + newText.length + " characters, " +
         Buffer.byteLength(newText, 'utf8') + " bytes");
     writeTextFile(newText, "finText");
-    
+
 });
 
 function newTextFile(array){
-    var newText = "", arr_words = 0;
+    var newText = "",
+        arr_words = 0,
+        i,j;
     for(i in array) {
         arr_words = array[i].split(" ");
         if( arr_words.length > 1){
@@ -62,8 +64,8 @@ function newTextFile(array){
             newText += array[i] + "\n";
         }
     }
-    writeTextFile( newText, "newText")
-    
+    writeTextFile( newText, "newText");
+
 }
 function writeTextFile(text, name){
     fs.writeFile("update/" + name + ".txt", text, function(err) {
@@ -71,5 +73,5 @@ function writeTextFile(text, name){
             return console.log(err);
         }
         console.log("create a new file at update/"+ name + ".txt");
-    }); 
+    });
 }
